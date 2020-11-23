@@ -8,6 +8,7 @@ export default function LoginCard() {
       <Field label={"Email"}/>
       <Field label={"Password"} type={"password"}/>
       <div className="_loginBtn btn btn-success">Login</div>
+      <div className="clearfix"></div>
     </div>
   </>)
 }
