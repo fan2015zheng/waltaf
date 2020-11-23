@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import './Button.css'
+import './SendVerifyCodeButton.css'
 
-export default function Button({className, caption, disabled}) {
+export default function SendVerifyCodeButton({className, caption, disabled}) {
 
   const [isDisabled, setIsDisabled] = useState(false)
   return(<>
@@ -12,8 +12,8 @@ export default function Button({className, caption, disabled}) {
           }
           setIsDisabled(true)
           setTimeout(()=>{setIsDisabled(false)},2000)
-        }}>
-         {caption}
+      }}>
+        Send verify code
       </div>
   </>)
 }

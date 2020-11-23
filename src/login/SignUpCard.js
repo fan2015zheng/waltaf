@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './SignUpCard.css'
 import Field from './Field'
 import Utils from '../utils/Utils'
-import Button from './Button'
+import SendVerifyCodeButton from './SendVerifyCodeButton'
 
 export default function SignUpCard() {
 
@@ -22,8 +22,7 @@ export default function SignUpCard() {
     <div className="_loginCard">
       <Field label={"Email"} value={email} 
         onChange={(e)=>{setEmail(e.target.value)}}/>
-      <Button className="_sendVerifyCode btn btn-info" disabled={isSendDisabled}
-        caption="Send verify code" />
+      <SendVerifyCodeButton className="_sendVerifyCode btn btn-info" disabled={isSendDisabled}/>
        
       <div className="clearfix"/>
       <Field label="Verify code"/>
