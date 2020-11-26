@@ -3,22 +3,41 @@ import './LoginPage.css'
 import LoginCard from './LoginCard'
 import SignUpCard from './SignUpCard'
 
-export default function LoginPage() {
+export default function LoginPage({setLoginToken}) {
 
-  const [isSignUp, setIsSignUp] = useState()
+  const [loginState, setLoginState] = useState("login")
 
-  let linkText = isSignUp ? "Login": "Sign Up"
-  let card = isSignUp ? <SignUpCard /> : <LoginCard />
+  let linkText = ""
+  let card = null
+  let instruction = ""
+  let otherState = ""
+
+  switch(loginState) {
+    case "login":
+      linkText = "Sign up"
+      otherState = "signup"
+      card = <LoginCard setLoginToken={setLoginToken}/>
+      instruction = "Your letter will be delivered between 2 to 7 days."
+      break
+    case "signup":
+      linkText = "Login"
+      otherState = "login"
+      card = <SignUpCard done={
+        ()=>{setLoginState("login")}
+      }/>
+      break
+    default:
+  }
 
   return(<>
     <div className="_loginPage">
       <div className="_waltaf">
         Write A Letter To A Friend
-        <span className="btn btn-link" onClick={()=>{setIsSignUp(!isSignUp)}}>
+        <span className="btn btn-link" onClick={()=>{setLoginState(otherState)}}>
           {linkText}
         </span>
       </div>
-      <div className="_7days">To mimic hand-written letters, we will not deliver your letters immediately but within 7 days.</div>
+      <div className="_instruction">{instruction}</div>
       {card}
     </div>
   </>)
