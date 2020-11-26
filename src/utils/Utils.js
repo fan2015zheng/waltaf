@@ -5,7 +5,7 @@ export default class Utils {
   static postData = postData
 }
 
-const heroku = false
+const heroku = true
 let root = "http://localhost:5000"
 if(heroku) {
   root= "https://login2021.herokuapp.com"
