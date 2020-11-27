@@ -28,7 +28,7 @@ export default function LoginCard({setIsLoggedIn}) {
             if(data && data.ok) {
               setIsLoggedIn(true)
             } else {
-              
+              setLoginFail(true)
             }
           }
           )
