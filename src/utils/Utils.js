@@ -48,6 +48,7 @@ function postData(url, request, callback) {
 function fetchData(url,method,body,callback) {
   const option = {
     method: method,
+    mode: 'cors',
     credentials: 'include',
     headers: {'Content-Type':'application/json'},
   }
