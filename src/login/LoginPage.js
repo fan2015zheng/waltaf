@@ -3,7 +3,7 @@ import './LoginPage.css'
 import LoginCard from './LoginCard'
 import SignUpCard from './SignUpCard'
 
-export default function LoginPage({setLoginToken}) {
+export default function LoginPage({setIsLoggedIn}) {
 
   const [loginState, setLoginState] = useState("login")
 
@@ -16,7 +16,7 @@ export default function LoginPage({setLoginToken}) {
     case "login":
       linkText = "Sign up"
       otherState = "signup"
-      card = <LoginCard setLoginToken={setLoginToken}/>
+      card = <LoginCard setIsLoggedIn={setIsLoggedIn}/>
       instruction = "Your letter will be delivered between 2 to 7 days."
       break
     case "signup":

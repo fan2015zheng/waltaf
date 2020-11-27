@@ -1,15 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import LoginPage from './login/LoginPage'
 import Test from './activity/Test'
+import Utils from './utils/Utils'
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const [loginToken, setLoginToken] = useState("")
-console.log(loginToken)
-  let page = <LoginPage setLoginToken={setLoginToken}/>
-  if(loginToken) {
-    page = <Test setLoginToken={setLoginToken} />
+  useEffect(()=>{
+    if(!isLoggedIn) {
+      Utils.getData("/user/isLoggedIn", (err, data)=>{
+        console.log(err,data)
+        if(data && data.ok) {
+          setIsLoggedIn(true)
+        }
+      })
+    }
+  },[isLoggedIn])
+
+  let page = <LoginPage setIsLoggedIn={setIsLoggedIn}/>
+  if(isLoggedIn) {
+    page = <Test setIsLoggedIn={setIsLoggedIn}/>
   }
   return (<>
     {page}

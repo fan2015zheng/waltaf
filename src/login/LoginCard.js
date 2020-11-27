@@ -3,7 +3,7 @@ import './LoginCard.css'
 import Field from './Field'
 import Utils from '../utils/Utils'
 
-export default function LoginCard({setLoginToken}) {
+export default function LoginCard({setIsLoggedIn}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loginFail, setLoginFail] = useState(false)
@@ -15,20 +15,20 @@ export default function LoginCard({setLoginToken}) {
   return(<>
     <div className="_loginCard">
     <Field label={"Email"} value={email} 
-        onChange={(e)=>{setEmail(e.target.value); setLoginFail(false)}}/>
+        onChange={(e)=>{setEmail(e.target.value)}}/>
       <div className="clearfix"/>
       <Field label={"Password"} type={"password"} value={password}
-        onChange={(e)=>{setPassword(e.target.value); setLoginFail(false)}}/>
+        onChange={(e)=>{setPassword(e.target.value)}}/>
 
       <div className="_loginBtn btn btn-success"
         onClick={()=>{
           Utils.postData("/user/login",
           {email:email,password:password},
           (err,data)=>{
-            if(data.ok) {
-              setLoginToken(data.token)
+            if(data && data.ok) {
+              setIsLoggedIn(true)
             } else {
-              setLoginFail(true)
+              
             }
           }
           )

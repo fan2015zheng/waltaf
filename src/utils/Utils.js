@@ -39,18 +39,22 @@ function isEmailValid(email) {
   return true
 }
 
-function getData(url, request, callback) {
-  fetchData(url, 'GET', request, callback)
+function getData(url, callback) {
+  fetchData(url, 'GET', null, callback)
 }
 function postData(url, request, callback) {
   fetchData(url, 'POST', request, callback)
 }
-function fetchData(url,method,request,callback) {
-  fetch(`${root}${url}`,{
+function fetchData(url,method,body,callback) {
+  const option = {
     method: method,
+    credentials: 'include',
     headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(request)
-  })
+  }
+  if (body) {
+    option.body = JSON.stringify(body)
+  }
+  fetch(`${root}${url}`,option)
   .then(res => res.json())
   .then((data)=>{
     callback(null,data)
