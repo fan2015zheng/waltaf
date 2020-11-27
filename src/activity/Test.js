@@ -7,7 +7,6 @@ export default function Test({setIsLoggedIn}) {
     <br/>
     <button onClick={()=>{
       Utils.getData("/user/logout", (err, data)=>{
-        console.log(err, data)
         setIsLoggedIn(false)
       })
     }} className="btn btn-danger">Logout</button>

@@ -10,7 +10,6 @@ export default function App() {
   useEffect(()=>{
     if(!isLoggedIn) {
       Utils.getData("/user/isLoggedIn", (err, data)=>{
-        console.log(err,data)
         if(data && data.ok) {
           setIsLoggedIn(true)
         }
