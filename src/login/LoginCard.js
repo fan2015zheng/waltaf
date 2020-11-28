@@ -6,12 +6,8 @@ import Utils from '../utils/Utils'
 export default function LoginCard({setIsLoggedIn}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loginFail, setLoginFail] = useState(false)
+  const [loginFailMessage, setLoginFailMessage] = useState(false)
 
-  let errorMessage = ""
-  if(loginFail && (email || password)) {
-    errorMessage = "Email or password is not correct"
-  }
   return(<>
     <div className="_loginCard">
     <Field label={"Email"} value={email} 
@@ -25,17 +21,18 @@ export default function LoginCard({setIsLoggedIn}) {
           Utils.postData("/user/login",
           {email:email,password:password},
           (err,data)=>{
+            console.log(err, data)
             if(data && data.ok) {
               setIsLoggedIn(true)
             } else {
-              setLoginFail(true)
+              setLoginFailMessage(data.error)
             }
           }
           )
         }}
       >Login</div>
       <div className="clearfix"></div>
-      <div className="_errorMessage">{errorMessage}</div>
+      <div className="_errorMessage">{loginFailMessage}</div>
     </div>
   </>)
 }
